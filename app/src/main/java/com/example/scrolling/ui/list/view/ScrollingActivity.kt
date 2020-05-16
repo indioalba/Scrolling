@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.scrolling.R
+import com.example.scrolling.application.BaseActivity
 import com.example.scrolling.ui.list.NetworkApi
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.AndroidInjection
@@ -13,13 +14,12 @@ import kotlinx.android.synthetic.main.activity_scrolling.*
 import javax.inject.Inject
 
 
-class ScrollingActivity : AppCompatActivity() {
+class ScrollingActivity : BaseActivity() {
 
     @Inject
     lateinit var networkApi: NetworkApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scrolling)
         setSupportActionBar(toolbar)
