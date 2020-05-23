@@ -8,11 +8,12 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.example.scrolling.R
 import com.example.scrolling.application.BaseActivity
 import com.example.scrolling.databinding.ActivityScrollingBinding
 import com.example.scrolling.ui.list.NetworkApi
-import com.example.scrolling.ui.list.model.UserResponse
+import com.example.scrolling.ui.list.model.User
 import com.example.scrolling.ui.list.view.viewmodel.ScrollingViewModel
 import kotlinx.android.synthetic.main.activity_scrolling.*
 import javax.inject.Inject
@@ -29,27 +30,29 @@ class ScrollingActivity : BaseActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val viewModel: ScrollingViewModel by viewModels()
+    //private val viewModel: ScrollingViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_scrolling)
+        //setContentView(R.layout.activity_scrolling)
         setSupportActionBar(toolbar)
 
-        //Binding
-        val binding : ActivityScrollingBinding = DataBindingUtil.setContentView(this, R.layout.activity_scrolling)
+        // ViewModel
         val viewModel: ScrollingViewModel = ViewModelProvider(this, viewModelFactory)[ScrollingViewModel::class.java]
+        // DataBinding
+        val binding : ActivityScrollingBinding = DataBindingUtil.setContentView(this, R.layout.activity_scrolling)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+        setContentView(binding.root)
 
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
         // test livedata, instance and update when when userResponse get updated
-        val userAvailableTextView = findViewById(R.id.target) as TextView
-        val userResponse = Observer<UserResponse> {
-            userAvailableTextView.text = it.userList[0].firstName
+        val userResponse = Observer<List<User>> { userList ->
+            viewModel.updateUserList(userList)
         }
         // observing in userResponse the updates of viewModel.userResponse
-        viewModel.userResponse.observe(this, userResponse)
+        viewModel.userList.observe(this, userResponse)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

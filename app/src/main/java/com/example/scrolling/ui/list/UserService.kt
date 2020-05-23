@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class UserService @Inject constructor() {
 
-    fun fetchUserList() : UserResponse {
+    fun fetchUserList() : List<User> {
         val userResponse = UserResponse(listOf(User(1, "Manuel A.", "Reyes", Gender.MALE), User(2, "Rosa", "Valverde", Gender.FEMALE)))
-        return userResponse
+        return userResponse.userList
     }
 }
