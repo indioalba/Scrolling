@@ -10,6 +10,8 @@ import javax.inject.Inject
 
 class ScrollingViewModel @Inject constructor(private val userService: UserService) : ViewModel() {
 
+    val name ="Matias Prat"
+
     private var _userResponse = MutableLiveData<UserResponse>().apply {
         value = null
     }
