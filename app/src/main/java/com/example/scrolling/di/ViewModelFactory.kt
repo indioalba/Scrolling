@@ -1,4 +1,4 @@
-package com.example.scrolling.di.modules
+package com.example.scrolling.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

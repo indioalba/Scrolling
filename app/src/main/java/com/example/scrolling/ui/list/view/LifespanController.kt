@@ -1,7 +1,7 @@
 package com.example.scrolling.ui.list.view
 
 import androidx.lifecycle.MutableLiveData
-import com.example.scrolling.ui.list.model.User
+import com.example.scrolling.model.User
 import java.util.*
 import javax.inject.Inject
 

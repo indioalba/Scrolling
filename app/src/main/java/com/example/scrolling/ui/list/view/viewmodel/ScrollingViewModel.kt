@@ -4,8 +4,8 @@ import android.view.View
 import androidx.lifecycle.*
 import com.example.scrolling.ui.list.UserAdapter
 import com.example.scrolling.ui.list.UserService
-import com.example.scrolling.ui.list.model.User
-import com.example.scrolling.ui.list.model.UserResponse
+import com.example.scrolling.model.User
+import com.example.scrolling.model.UserResponse
 import com.example.scrolling.ui.list.view.LifespanController
 import retrofit2.Call
 import retrofit2.Response
@@ -35,7 +35,7 @@ class ScrollingViewModel @Inject constructor(
 
     var speed: String = ""
 
-    private var speedInSeconds: Long = DEFAULT_SPEED
+    private var speedInMiliseconds: Long = DEFAULT_SPEED
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
@@ -44,7 +44,7 @@ class ScrollingViewModel @Inject constructor(
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    fun onResume() = lifespanController.startTask(userList, speedInSeconds)
+    fun onResume() = lifespanController.startTask(userList, speedInMiliseconds)
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun onStop() = lifespanController.stopTask()
@@ -56,7 +56,7 @@ class ScrollingViewModel @Inject constructor(
             override fun onResponse(call: Call<UserResponse>?, response: Response<UserResponse>?) {
                 loadingVisibility.value = View.GONE
                 userList.value = response?.body()?.userList ?: emptyList()
-                lifespanController.startTask(userList, speedInSeconds)
+                lifespanController.startTask(userList, speedInMiliseconds)
             }
 
             override fun onFailure(call: Call<UserResponse>?, t: Throwable?) {
@@ -68,8 +68,8 @@ class ScrollingViewModel @Inject constructor(
 
     fun updateSpeed() {
         if (speed.isNotEmpty() && speed.toLong() > 0) {
-            speedInSeconds = speed.toLong() * 1000
-            lifespanController.startTask(userList, speedInSeconds)
+            speedInMiliseconds = speed.toLong() * 1000
+            lifespanController.startTask(userList, speedInMiliseconds)
         } else {
             // display error message, value must be > 0
         }

@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scrolling.R
 import com.example.scrolling.databinding.RowItemBinding
-import com.example.scrolling.ui.list.model.User
+import com.example.scrolling.model.User
 import javax.inject.Inject
 
 class UserAdapter @Inject constructor() : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {

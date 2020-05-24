@@ -2,7 +2,7 @@ package com.example.scrolling.application
 
 import android.app.Activity
 import android.app.Application
-import com.example.scrolling.di.modules.DaggerMyApplicationComponent
+import com.example.scrolling.di.DaggerMyApplicationComponent
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject

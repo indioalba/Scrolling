@@ -1,6 +1,6 @@
 package com.example.scrolling.api
 
-import com.example.scrolling.ui.list.model.UserResponse
+import com.example.scrolling.model.UserResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

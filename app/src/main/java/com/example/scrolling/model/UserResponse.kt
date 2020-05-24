@@ -1,4 +1,4 @@
-package com.example.scrolling.ui.list.model
+package com.example.scrolling.model
 
 import com.google.gson.annotations.SerializedName
 

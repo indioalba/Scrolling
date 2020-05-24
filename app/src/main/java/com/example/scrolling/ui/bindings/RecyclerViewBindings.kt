@@ -1,4 +1,4 @@
-package com.example.scrolling.ui.list.bindings
+package com.example.scrolling.ui.bindings
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
