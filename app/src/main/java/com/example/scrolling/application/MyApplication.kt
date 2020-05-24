@@ -8,9 +8,11 @@ import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
 class MyApplication : Application(), HasActivityInjector {
+
     @JvmField
     @Inject
     var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>? = null
+
     override fun onCreate() {
         super.onCreate()
         DaggerMyApplicationComponent.create().inject(this)

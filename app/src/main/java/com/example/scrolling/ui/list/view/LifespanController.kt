@@ -5,22 +5,21 @@ import com.example.scrolling.ui.list.model.User
 import java.util.*
 import javax.inject.Inject
 
-class LifespanController @Inject constructor(){
-    var timerTaskObj: TimerTask? = null
-    var timerObj : Timer? = null
+class LifespanController @Inject constructor() {
+    private var timerTaskObj: TimerTask? = null
+    private var timerObj: Timer? = null
 
-    fun startTask(userList: MutableLiveData<List<User>>, lifespanTime: Long = 1500) {
+    fun startTask(userList: MutableLiveData<List<User>>, lifespanTime: Long) {
         stopTask()
 
         timerObj = Timer()
         timerTaskObj = object : TimerTask() {
             override fun run() {
                 val tempUserList = userList.value!!
-                if(!tempUserList.isNullOrEmpty()) {
+                if (!tempUserList.isNullOrEmpty()) {
                     userList.postValue(tempUserList.subList(1, tempUserList.size))
                 } else {
-                    timerObj?.cancel()
-                    timerObj?.purge()
+                    stopTask()
                 }
             }
         }
@@ -28,7 +27,7 @@ class LifespanController @Inject constructor(){
         timerObj?.schedule(timerTaskObj, lifespanTime, lifespanTime)
     }
 
-    fun stopTask(){
+    fun stopTask() {
         timerTaskObj?.cancel()
         timerObj?.cancel()
         timerObj?.purge()

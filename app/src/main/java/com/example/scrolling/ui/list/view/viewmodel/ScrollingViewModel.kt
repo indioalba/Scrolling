@@ -13,9 +13,8 @@ import javax.inject.Inject
 
 class ScrollingViewModel @Inject constructor(
     private val userService: UserService,
-    var adapter: UserAdapter,
-    private val lifespanController: LifespanController
-) : ViewModel(), LifecycleObserver {
+    private val lifespanController: LifespanController,
+    var adapter: UserAdapter) : ViewModel(), LifecycleObserver {
 
     private var userList = MutableLiveData<List<User>>().apply {
         value = emptyList()
@@ -34,6 +33,10 @@ class ScrollingViewModel @Inject constructor(
         value = View.GONE
     }
 
+    var speed: String = ""
+
+    private var speedInSeconds: Long = DEFAULT_SPEED
+
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate() {
         fetchUsers()
@@ -41,7 +44,7 @@ class ScrollingViewModel @Inject constructor(
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    fun onResume() = lifespanController.startTask(userList, 1000)
+    fun onResume() = lifespanController.startTask(userList, speedInSeconds)
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun onStop() = lifespanController.stopTask()
@@ -53,7 +56,7 @@ class ScrollingViewModel @Inject constructor(
             override fun onResponse(call: Call<UserResponse>?, response: Response<UserResponse>?) {
                 loadingVisibility.value = View.GONE
                 userList.value = response?.body()?.userList ?: emptyList()
-                lifespanController.startTask( userList, 1000)
+                lifespanController.startTask(userList, speedInSeconds)
             }
 
             override fun onFailure(call: Call<UserResponse>?, t: Throwable?) {
@@ -61,5 +64,18 @@ class ScrollingViewModel @Inject constructor(
                 errorVisibility.value = View.VISIBLE
             }
         })
+    }
+
+    fun updateSpeed() {
+        if (speed.isNotEmpty() && speed.toLong() > 0) {
+            speedInSeconds = speed.toLong() * 1000
+            lifespanController.startTask(userList, speedInSeconds)
+        } else {
+            // display error message, value must be > 0
+        }
+    }
+
+    companion object {
+        private const val DEFAULT_SPEED = 2000L
     }
 }

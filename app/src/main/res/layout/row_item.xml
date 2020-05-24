@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <variable
-            name="position"
-            type="java.lang.Integer" />
-
         <variable
             name="user"
             type="com.example.scrolling.ui.list.model.User" />
@@ -15,30 +10,30 @@
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
+        style="@style/Base.CardView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="8dp"
-        android:padding="8dp"
-        android:elevation="2dp"
         android:background="@color/colorPrimary"
-        style="@style/Base.CardView">
+        android:elevation="2dp"
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <TextView
+            style="@style/TextAppearance.MaterialComponents.Headline4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.MaterialComponents.Headline4"
-            android:textColor="@color/colorPrimaryDark"
             android:text="@{user.lastName}"
+            android:textColor="@color/colorPrimaryDark"
             tools:text="Reyes" />
 
         <TextView
+            style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
             android:text="@{user.firstName}"
-            tools:text="Manuel"/>
+            android:textColor="@color/colorPrimaryDark"
+            tools:text="Manuel" />
 
     </LinearLayout>
 </layout>

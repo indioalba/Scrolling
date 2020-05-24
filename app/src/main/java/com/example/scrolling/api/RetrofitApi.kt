@@ -5,13 +5,8 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import java.lang.IllegalArgumentException
-
 
 class RetrofitApi {
-
-    // Access Token: tK_kUKHZtvn9ESp6XS5Qms1HMVAzGgO7wERc
-    // https://gorest.co.in/
 
     companion object {
         private var api: ApiInterface? = null

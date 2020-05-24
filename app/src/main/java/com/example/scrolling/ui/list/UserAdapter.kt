@@ -12,9 +12,15 @@ import javax.inject.Inject
 class UserAdapter @Inject constructor() : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     private var userList: List<User> = emptyList()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = DataBindingUtil.inflate<RowItemBinding>(layoutInflater, R.layout.row_item, parent, false)
+        val binding = DataBindingUtil.inflate<RowItemBinding>(
+            layoutInflater,
+            R.layout.row_item,
+            parent,
+            false
+        )
         return UserViewHolder(binding)
     }
 
@@ -28,6 +34,7 @@ class UserAdapter @Inject constructor() : RecyclerView.Adapter<UserAdapter.UserV
         userList = _userList
     }
 
-    inner class UserViewHolder(val binding: RowItemBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class UserViewHolder(val binding: RowItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
     }
 }
