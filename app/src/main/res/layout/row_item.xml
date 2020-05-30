@@ -23,17 +23,17 @@
             style="@style/TextAppearance.MaterialComponents.Headline4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{user.lastName}"
+            android:text="@{user.firstName}"
             android:textColor="@color/colorPrimaryDark"
-            tools:text="Reyes" />
+            tools:text="Manuel" />
 
         <TextView
             style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{user.firstName}"
+            android:text="@{user.lastName}"
             android:textColor="@color/colorPrimaryDark"
-            tools:text="Manuel" />
+            tools:text="Reyes" />
 
     </LinearLayout>
 </layout>

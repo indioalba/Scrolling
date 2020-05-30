@@ -30,8 +30,8 @@ class UserAdapter @Inject constructor() : RecyclerView.Adapter<UserAdapter.UserV
         holder.binding.user = userList[position]
     }
 
-    fun setUserList(_userList: List<User>) {
-        userList = _userList
+    fun setUserList(_userList: List<User>?) {
+        userList = _userList ?: emptyList()
     }
 
     inner class UserViewHolder(val binding: RowItemBinding) :
