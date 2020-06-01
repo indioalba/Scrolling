@@ -1,14 +1,17 @@
 package com.example.scrolling.di.modules
 
-import com.example.scrolling.ui.list.view.ScrollingActivity
+import android.content.Context
+import com.example.scrolling.application.MyApplication
 import dagger.Module
-import dagger.android.ContributesAndroidInjector
+import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-internal abstract class MyApplicationModule {
+class MyApplicationModule() {
 
-    @Singleton
-    @ContributesAndroidInjector
-    abstract fun contributeScrollingActivityInjector(): ScrollingActivity
+        @Provides
+        @Singleton
+        fun providesContext(application: MyApplication): Context {
+            return application.applicationContext
+        }
 }
