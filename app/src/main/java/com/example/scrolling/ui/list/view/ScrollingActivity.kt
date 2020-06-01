@@ -1,8 +1,6 @@
 package com.example.scrolling.ui.list.view
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.scrolling.R

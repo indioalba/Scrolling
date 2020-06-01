@@ -116,7 +116,6 @@
                 android:fadeScrollbars="false"
                 android:scrollbars="vertical"
                 android:visibility="@{viewModel.loadingVisibility == 0? View.GONE : View.VISIBLE}"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:onScrollListener="@{viewModel.onEndOfList}"
                 app:setAdapter="@{viewModel.adapter}"
                 tools:listitem="@layout/row_item"
@@ -145,15 +144,6 @@
             android:theme="@style/Widget.AppCompat.ProgressBar"
             android:visibility="@{viewModel.loadingVisibility}" />
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:onClick="@{()-> viewModel.fetchUsers()}"
-            app:srcCompat="@drawable/ic_refresh" />
-            -->
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
